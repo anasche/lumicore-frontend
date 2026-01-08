@@ -25,49 +25,74 @@ export default function CleanedTable({ data, onChange }: Props) {
   };
 
   return (
-    <table className="table-auto w-full border">
-      <thead>
-        <tr className="bg-black">
-          <th className="p-2 border">Doc ID</th>
-          <th className="p-2 border">Type</th>
-          <th className="p-2 border">Counterparty</th>
-          <th className="p-2 border">Project</th>
-          <th className="p-2 border">Expiry Date</th>
-          <th className="p-2 border">Amount</th>
-        </tr>
-      </thead>
-      <tbody>
-        {records.map((rec, i) => (
-          <tr key={rec.doc_id + i} className="text-center">
-            <td className="border p-1">{rec.doc_id}</td>
-            <td className="border p-1">{rec.type}</td>
-            <td className="border p-1">{rec.counterparty}</td>
-            <td className="border p-1">
-              <input
-                className="border p-1 w-full"
-                value={rec.project || ""}
-                onChange={(e) => handleEdit(i, "project", e.target.value)}
-              />
-            </td>
-            <td className="border p-1">
-              <input
-                type="date"
-                className="border p-1 w-full"
-                value={rec.expiry_date || ""}
-                onChange={(e) => handleEdit(i, "expiry_date", e.target.value)}
-              />
-            </td>
-            <td className="border p-1">
-              <input
-                type="number"
-                className="border p-1 w-full"
-                value={rec.amount || ""}
-                onChange={(e) => handleEdit(i, "amount", e.target.value)}
-              />
-            </td>
+    <div className="overflow-x-auto rounded-lg border border-gray-200 shadow-sm">
+      <table className="min-w-full divide-y divide-gray-200">
+        <thead className="bg-gray-800">
+          <tr>
+            <th className="px-4 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+              Doc ID
+            </th>
+            <th className="px-4 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+              Type
+            </th>
+            <th className="px-4 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+              Counterparty
+            </th>
+            <th className="px-4 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+              Project
+            </th>
+            <th className="px-4 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+              Expiry Date
+            </th>
+            <th className="px-4 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+              Amount
+            </th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody className="bg-white divide-y divide-gray-200">
+          {records.map((rec, i) => (
+            <tr
+              key={rec.doc_id + i}
+              className="hover:bg-gray-50 transition-colors"
+            >
+              <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
+                {rec.doc_id}
+              </td>
+              <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
+                {rec.type}
+              </td>
+              <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
+                {rec.counterparty}
+              </td>
+              <td className="px-4 py-3">
+                <input
+                  className="w-full px-2 py-1 text-sm text-gray-900 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  value={rec.project || ""}
+                  onChange={(e) => handleEdit(i, "project", e.target.value)}
+                  placeholder="Enter project"
+                />
+              </td>
+              <td className="px-4 py-3">
+                <input
+                  type="date"
+                  className="w-full px-2 py-1 text-sm text-gray-900 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  value={rec.expiry_date || ""}
+                  onChange={(e) => handleEdit(i, "expiry_date", e.target.value)}
+                />
+              </td>
+              <td className="px-4 py-3">
+                <input
+                  type="number"
+                  className="w-full px-2 py-1 text-sm text-gray-900 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  value={rec.amount || ""}
+                  onChange={(e) => handleEdit(i, "amount", e.target.value)}
+                  placeholder="0.00"
+                />
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }
