@@ -5,9 +5,8 @@ import useSWR from "swr";
 import toast from "react-hot-toast";
 import { fetchCleanedData, submitCleanedData } from "@/src/lib/api";
 import CleanedTable from "@/src/components/CleanedTable";
-// import { CheckCircle } from "lucide-react";
 
-export const HomePage = () => {
+export default function HomePage() {
   const { data, error, isLoading } = useSWR("/cleaned-1", () =>
     fetchCleanedData(1)
   );
@@ -122,7 +121,6 @@ export const HomePage = () => {
         {isSubmitted && responseData !== null && (
           <div className="bg-white rounded-lg shadow-md p-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="flex items-center gap-3 mb-4">
-              {/* <CheckCircle className="text-green-500 w-6 h-6" /> */}
               <h2 className="text-xl font-semibold text-gray-800">
                 Validation Score
               </h2>
@@ -168,4 +166,4 @@ export const HomePage = () => {
       </div>
     </div>
   );
-};
+}
