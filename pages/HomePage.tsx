@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import useSWR from "swr";
-import { fetchCleanedData, submitCleanedData } from "../lib/api";
-import CleanedTable from "./CleanedTable";
 import toast from "react-hot-toast";
+import { fetchCleanedData, submitCleanedData } from "@/src/lib/api";
+import CleanedTable from "@/src/components/CleanedTable";
 
 export const HomePage = () => {
   const { data, error, isLoading } = useSWR("/cleaned-1", () =>

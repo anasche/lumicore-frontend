@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000";
+const API_BASE = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 export const fetchCleanedData = async (batch: number = 1) => {
   const res = await axios.get(`${API_BASE}/api/cleaned/${batch}/`);
